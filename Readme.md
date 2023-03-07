@@ -5,3 +5,61 @@
 </p>
 
 # Official Orquesta SDK for GO
+
+## Installation
+
+```bash
+go get github.com/orquesta/orquesta-sdk-go
+```
+
+## Usage
+
+_You can get your workspace API key from the settings section in your workspace._
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/orquesta/orquesta-sdk-go"
+)
+
+func main() {
+	client, err := orquesta.Init(orquesta.ClientOptions{
+		ApiKey: "RQST.3dd3ffb25bcb4798909c3d1b4a23cc7e.ZzKrf3Vl2hxSzDn2wykwxed7nqc",
+	})
+
+    if err != nil {
+		// ...
+	}
+
+    var kill_switch_enabled bool
+	err = client.Query("kill_switch", orquesta.RuleContext{"environments": "production"}, &kill_switch_enabled)
+
+
+    if err != nil {
+		// ...
+	}
+
+    fmt.Printf("Result: %v\n", kill_switch_enabled)
+}
+
+```
+
+## Notes
+
+Is important to note that the value provided as the third parameter to the `Query` method must be a pointer to a variable of the type you want to receive the result in. This is because the SDK uses reflection to determine the type of the variable and then unmarshal the result into it.
+
+It is easy to find the type if you look at the definition of the rule in the Orquesta Dashboard.
+
+For example, if you want to receive the result as a `string`, you must pass a pointer to a `string` variable, like this:
+
+```go
+var string_var string
+
+err = client.Query("string_rule", orquesta.RuleContext{"environments": "production"}, &string_var)
+
+if err != nil {
+    // ...
+}
+```
