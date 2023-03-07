@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-go get github.com/orquesta/orquesta-sdk-go
+go github.com/orquestadev/orquesta-go
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ package main
 
 import (
     "fmt"
-    "github.com/orquesta/orquesta-sdk-go"
+    "github.com/orquestadev/orquesta-go"
 )
 
 func main() {
