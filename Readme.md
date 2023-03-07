@@ -26,7 +26,7 @@ import (
 
 func main() {
 	client, err := orquesta.Init(orquesta.ClientOptions{
-		ApiKey: "RQST.3dd3ffb25bcb4798909c3d1b4a23cc7e.ZzKrf3Vl2hxSzDn2wykwxed7nqc",
+		ApiKey: "ORQUESTA_API_KEY",
 	})
 
     if err != nil {
