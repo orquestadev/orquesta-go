@@ -30,16 +30,20 @@ func main() {
 	})
 
     if err != nil {
-		// ...
-	}
+		  // ...
+	  }
 
     var kill_switch_enabled bool
-	err = client.Query("kill_switch", orquesta.RuleContext{"environments": "production"}, &kill_switch_enabled)
+    err = client.Query(
+    	"kill_switch",
+    	orquesta.RuleContext{"environments": "production"},
+    	&kill_switch_enabled
+    )
 
 
     if err != nil {
-		// ...
-	}
+		  // ...
+    }
 
     fmt.Printf("Result: %v\n", kill_switch_enabled)
 }
